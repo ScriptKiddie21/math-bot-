@@ -1,0 +1,41 @@
+# This is a Python script that creates a math-solving bot
+
+import math
+
+# Define a function that solves simple math equations
+def solve_equation(equation):
+  return eval(equation)
+
+# Define a function that solves quadratic equations using the quadratic formula
+def solve_quadratic(a, b, c):
+  discriminant = b**2 - 4*a*c
+  if discriminant < 0:
+    return "No real solutions"
+  elif discriminant == 0:
+    return -b / (2*a)
+else:
+    x1 = (-b + math.sqrt(discriminant)) / (2*a)
+    x2 = (-b - math.sqrt(discriminant)) / (2*a)
+    return x1, x2
+
+# Define a function that takes in user input and returns a solution
+def process_input(user_input):
+  if "solve" in user_input:
+    equation = user_input.split(" ")[1]
+    return solve_equation(equation)
+  elif "quadratic" in user_input:
+    a = int(user_input.split(" ")[1])
+    b = int(user_input.split(" ")[2])
+    c = int(user_input.split(" ")[3])
+    return solve_quadratic(a, b, c)
+  else:
+    return "Invalid input"
+
+# Accept user input and process it until the user quits
+while True:
+  user_input = input("What math equation would you like to solve? Type 'quit' to exit. ")
+  if user_input == "quit":
+    break
+  else:
+    solution = process_input(user_input)
+    print("Solution: " + str(solution))
